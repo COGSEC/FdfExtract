@@ -2,6 +2,7 @@ package FdfExtract
 
 import "testing"
 
+// TestCheckpath tests checkpath function in checkpath.go
 func TestCheckpath(t *testing.T) {
 	testcases := []struct {
 		testname string
