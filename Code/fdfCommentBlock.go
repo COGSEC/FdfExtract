@@ -6,17 +6,15 @@ type fdfCommentBlock struct {
 	comments   []Comment
 }
 
-// GetSourceFile
+// GetSourceFile from fdfCommentBlock
 func (cb fdfCommentBlock) GetSourceFile() []byte {
 	return cb.sourceFile
 }
 
-// GetComments
+// GetComments from fdfCommentBlock
 func (cb fdfCommentBlock) GetComments() []Comment {
 	return cb.comments
 }
-
-//GetComments
 
 // NewCommentBlock creates a new comment block
 func NewCommentBlock(sourceFile []byte, comments []Comment) CommentBlock {
