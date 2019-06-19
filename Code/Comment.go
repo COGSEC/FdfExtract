@@ -1,7 +1,7 @@
 package FdfExtract
 
-//Comment is an annotation found within a foxit document
+//Comment has methods to pull annotation info found within a foxit document
 type Comment interface {
-	GetNote() []byte
+	GetContent() []byte
 	GetPageNumber() int
 }
