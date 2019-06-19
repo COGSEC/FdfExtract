@@ -1,7 +1,8 @@
 package FdfExtract
 
-// CommentBlock contains meta-data and comments pulled from an FCE
+// CommentBlock includes methods to get comments pulled from an FCE and return
+// the path they were received from
 type CommentBlock interface {
-	GetSourceFilePath() []byte
+	GetSourceFile() []byte
 	GetComments() []Comment
 }
