@@ -6,7 +6,7 @@ import (
 )
 
 // LineParser functions takes bytes, parse them, and returns a Comment
-type lineParser func([]byte) (Comment, bool)
+type lineParser func([]byte) (Comment, error)
 
 /*
 The following are utility functions expected to be held in common between many
