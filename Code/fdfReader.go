@@ -3,7 +3,6 @@ package FdfExtract
 import (
 	"bufio"
 	"errors"
-	"fmt"
 	"os"
 )
 
@@ -41,9 +40,6 @@ func (reader *fdfReader) Read(path string) (CommentBlock, error) {
 	}
 	var comments []Comment // create comment array
 	comments = readerNonConcurrent(scanner, parser)
-	for i := range comments {
-		fmt.Println(string(comments[i].GetContent()))
-	}
 	var output []Comment
 	for i := range comments {
 		output = append(output, comments[i])
