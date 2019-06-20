@@ -9,6 +9,7 @@ func TestCheckbytes(t *testing.T) {
 	a, b := []byte("test1/"), []byte("test/2")
 	c, d := []byte("test1/"), []byte("test1/")
 	e, f := []byte("test1"), []byte("test1/")
+	g, h := []byte("<</R"), []byte("<</C")
 	if checkbytes(a, b) {
 		t.Error("false positive")
 	}
@@ -16,6 +17,9 @@ func TestCheckbytes(t *testing.T) {
 		t.Error("false negative")
 	}
 	if checkbytes(e, f) {
+		t.Error("false positive")
+	}
+	if checkbytes(g, h) {
 		t.Error("false positive")
 	}
 }

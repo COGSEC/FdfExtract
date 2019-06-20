@@ -9,7 +9,7 @@ import (
 type lineParser func([]byte) (Comment, error)
 
 /*
-The following are utility functions expected to be held in common between many
+The following are utility functions expected to be held `in common between many
 types of lineParsers
 */
 
@@ -56,4 +56,11 @@ func extract(array []byte, sWord []byte, eWord []byte) ([]byte, bool) {
 		return nil, false // comment formatted badly
 	}
 	return array[sPos.endPos:ePos.startPos], true
+}
+
+// copyBytes is a utility function
+func copyBytes(content []byte) []byte {
+	text := make([]byte, len(content))
+	copy(text, content)
+	return text
 }
