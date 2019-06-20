@@ -3,6 +3,7 @@ package FdfExtract
 import (
 	"errors"
 	"strconv"
+	"strings"
 )
 
 // lineParser12 is used on fdf docs with heading "%FDF-1.2"
@@ -13,12 +14,12 @@ func lineParserFdf12(line []byte) (Comment, error) {
 	if !checkbytes(line[0:4], []byte("<</C")) {
 		return nil, errors.New("Bad Heading") // line starter incorrect
 	}
-	delimiters := []struct {
+	delimiters := []struct { // for readability
 		sWord []byte
 		eWord []byte
 	}{
 		{[]byte("/Contents("), []byte(")/Subtype")},
-		{[]byte(")/Page "), []byte("/RC(")},
+		{[]byte("/Page "), []byte("/RC(")},
 	}
 	content, ok := extract(line, delimiters[0].sWord, delimiters[0].eWord)
 	if !ok {
@@ -32,9 +33,15 @@ func lineParserFdf12(line []byte) (Comment, error) {
 	if err != nil {
 		return nil, errors.New("Page Number unable to be converted to int")
 	}
-	cmnt, err := NewComment(content, pagenumber)
+	cmnt, err := NewComment(copyBytes(cleanformatting(content)), pagenumber)
 	if err != nil {
 		return nil, err
 	}
 	return cmnt, nil
+}
+
+func cleanformatting(bytes []byte) []byte {
+	s := string(bytes)
+	s = strings.Replace(s, string([]byte{92, 114, 92, 110}), string("\n"), -1)
+	return copyBytes([]byte(s))
 }

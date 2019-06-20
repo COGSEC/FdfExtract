@@ -7,6 +7,8 @@ import (
 
 // TestLineParserFdf12 tests lineParserFdf12.go
 // NOTE: Not the best test cases, will have to be improved in the future **
+// 			 Many of these were made in response to errors being received post-testing
+//			 so it's a bit haphazard.
 func TestLineParserFdf12(t *testing.T) {
 	goodArray := []byte("<</CThis)/Page 2/RC( is a larger string Subtype/Contents(These are words within it)/Subtype")
 	cmnt, err := lineParserFdf12(goodArray)
